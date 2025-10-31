@@ -132,7 +132,3 @@ print(summary.groupby("Market_Regime")["Sharpe Ratio"].std())
 
 print("\n=== Proportion of Positive Sharpe Ratios (All Strategies) ===")
 print((results_df["Sharpe Ratio"] > 0).mean())
-
-# Keep terminal window open (useful when running from VS Code)
-input("\nPress Enter to exit...")
-
