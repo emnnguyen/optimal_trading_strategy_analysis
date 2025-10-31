@@ -1,0 +1,131 @@
+Best by Sharpe per Ticker:
+
+- AAPL: fast=100, slow=200, Sharpe=0.78, Return=244.38%
+- ABBV: fast=150, slow=200, Sharpe=0.85, Return=65.46%
+- ADBE: fast=30, slow=200, Sharpe=0.43, Return=114.59%
+- AMT: fast=100, slow=200, Sharpe=0.21, Return=28.95%
+- AMZN: fast=150, slow=200, Sharpe=0.62, Return=232.82%
+- AVGO: fast=100, slow=150, Sharpe=0.76, Return=244.32%
+- AXP: fast=100, slow=200, Sharpe=0.64, Return=157.04%
+- BA: fast=100, slow=200, Sharpe=0.26, Return=62.22%
+- BAC: fast=100, slow=200, Sharpe=0.58, Return=124.47%
+- BLK: fast=50, slow=150, Sharpe=0.66, Return=125.33%
+- CAT: fast=50, slow=100, Sharpe=0.43, Return=84.09%
+- CMCSA: fast=100, slow=150, Sharpe=0.11, Return=16.59%
+- COP: fast=50, slow=150, Sharpe=0.37, Return=92.28%
+- CRM: fast=50, slow=100, Sharpe=0.52, Return=124.60%
+- CSCO: fast=100, slow=150, Sharpe=0.57, Return=105.24%
+- CVX: fast=150, slow=200, Sharpe=0.31, Return=43.88%
+- DIS: fast=50, slow=150, Sharpe=0.19, Return=31.55%
+- DUK: fast=20, slow=150, Sharpe=0.27, Return=27.16%
+- GOOGL: fast=150, slow=200, Sharpe=0.63, Return=111.10%
+- GS: fast=50, slow=150, Sharpe=0.44, Return=89.01%
+- HD: fast=30, slow=100, Sharpe=0.56, Return=90.12%
+- HON: fast=150, slow=200, Sharpe=0.63, Return=94.47%
+- INTC: fast=100, slow=150, Sharpe=0.12, Return=25.00%
+- JNJ: fast=150, slow=200, Sharpe=0.14, Return=16.26%
+- JPM: fast=50, slow=100, Sharpe=0.72, Return=166.12%
+- KO: fast=30, slow=150, Sharpe=0.29, Return=30.69%
+- LLY: fast=50, slow=200, Sharpe=0.65, Return=185.28%
+- MCD: fast=30, slow=200, Sharpe=0.42, Return=43.32%
+- META: fast=100, slow=200, Sharpe=0.85, Return=123.17%
+- MRK: fast=50, slow=200, Sharpe=0.26, Return=34.30%
+- MS: fast=150, slow=200, Sharpe=0.49, Return=103.26%
+- MSFT: fast=50, slow=200, Sharpe=0.71, Return=174.71%
+- NEE: fast=30, slow=200, Sharpe=0.30, Return=42.32%
+- NFLX: fast=150, slow=200, Sharpe=0.50, Return=173.51%
+- NKE: fast=100, slow=150, Sharpe=0.31, Return=56.42%
+- NVDA: fast=100, slow=150, Sharpe=0.58, Return=368.33%
+- PEP: fast=100, slow=200, Sharpe=0.38, Return=40.75%
+- PFE: fast=100, slow=200, Sharpe=0.20, Return=31.24%
+- PG: fast=150, slow=200, Sharpe=0.71, Return=87.44%
+- PLD: fast=100, slow=200, Sharpe=0.47, Return=79.74%
+- RTX: fast=50, slow=100, Sharpe=0.40, Return=70.16%
+- SBUX: fast=50, slow=150, Sharpe=0.26, Return=39.42%
+- SCHW: fast=50, slow=100, Sharpe=0.29, Return=69.60%
+- TMO: fast=100, slow=150, Sharpe=0.48, Return=91.00%
+- TSLA: fast=100, slow=200, Sharpe=0.52, Return=164.14%
+- UNH: fast=50, slow=150, Sharpe=0.50, Return=95.03%
+- UPS: fast=150, slow=200, Sharpe=0.28, Return=47.73%
+- WFC: fast=50, slow=200, Sharpe=0.46, Return=95.42%
+- WMT: fast=150, slow=200, Sharpe=0.62, Return=73.20%
+- XOM: fast=150, slow=200, Sharpe=0.48, Return=85.06%
+
+Best by Return per Ticker:
+
+- AAPL: fast=100, slow=200, Return=244.38%, Sharpe=0.78
+- ABBV: fast=150, slow=200, Return=65.46%, Sharpe=0.85
+- ADBE: fast=30, slow=200, Return=114.59%, Sharpe=0.43
+- AMT: fast=100, slow=200, Return=28.95%, Sharpe=0.21
+- AMZN: fast=150, slow=200, Return=232.82%, Sharpe=0.62
+- AVGO: fast=100, slow=150, Return=244.32%, Sharpe=0.76
+- AXP: fast=100, slow=200, Return=157.04%, Sharpe=0.64
+- BA: fast=100, slow=200, Return=62.22%, Sharpe=0.26
+- BAC: fast=100, slow=200, Return=124.47%, Sharpe=0.58
+- BLK: fast=50, slow=150, Return=125.33%, Sharpe=0.66
+- CAT: fast=50, slow=100, Return=84.09%, Sharpe=0.43
+- CMCSA: fast=100, slow=150, Return=16.59%, Sharpe=0.11
+- COP: fast=50, slow=150, Return=92.28%, Sharpe=0.37
+- CRM: fast=50, slow=100, Return=124.60%, Sharpe=0.52
+- CSCO: fast=100, slow=150, Return=105.24%, Sharpe=0.57
+- CVX: fast=150, slow=200, Return=43.88%, Sharpe=0.31
+- DIS: fast=50, slow=150, Return=31.55%, Sharpe=0.19
+- DUK: fast=100, slow=200, Return=37.60%, Sharpe=0.25
+- GOOGL: fast=150, slow=200, Return=111.10%, Sharpe=0.63
+- GS: fast=50, slow=150, Return=89.01%, Sharpe=0.44
+- HD: fast=30, slow=100, Return=90.12%, Sharpe=0.56
+- HON: fast=150, slow=200, Return=94.47%, Sharpe=0.63
+- INTC: fast=100, slow=150, Return=25.00%, Sharpe=0.12
+- JNJ: fast=150, slow=200, Return=16.26%, Sharpe=0.14
+- JPM: fast=50, slow=100, Return=166.12%, Sharpe=0.72
+- KO: fast=30, slow=150, Return=30.69%, Sharpe=0.29
+- LLY: fast=100, slow=200, Return=211.78%, Sharpe=0.62
+- MCD: fast=30, slow=200, Return=43.32%, Sharpe=0.42
+- META: fast=100, slow=200, Return=123.17%, Sharpe=0.85
+- MRK: fast=50, slow=200, Return=34.30%, Sharpe=0.26
+- MS: fast=50, slow=100, Return=110.97%, Sharpe=0.48
+- MSFT: fast=50, slow=200, Return=174.71%, Sharpe=0.71
+- NEE: fast=30, slow=200, Return=42.32%, Sharpe=0.30
+- NFLX: fast=150, slow=200, Return=173.51%, Sharpe=0.50
+- NKE: fast=100, slow=150, Return=56.42%, Sharpe=0.31
+- NVDA: fast=100, slow=150, Return=368.33%, Sharpe=0.58
+- PEP: fast=100, slow=200, Return=40.75%, Sharpe=0.38
+- PFE: fast=100, slow=200, Return=31.24%, Sharpe=0.20
+- PG: fast=150, slow=200, Return=87.44%, Sharpe=0.71
+- PLD: fast=100, slow=200, Return=79.74%, Sharpe=0.47
+- RTX: fast=50, slow=100, Return=70.16%, Sharpe=0.40
+- SBUX: fast=50, slow=150, Return=39.42%, Sharpe=0.26
+- SCHW: fast=50, slow=100, Return=69.60%, Sharpe=0.29
+- TMO: fast=100, slow=150, Return=91.00%, Sharpe=0.48
+- TSLA: fast=100, slow=200, Return=164.14%, Sharpe=0.52
+- UNH: fast=50, slow=150, Return=95.03%, Sharpe=0.50
+- UPS: fast=150, slow=200, Return=47.73%, Sharpe=0.28
+- WFC: fast=50, slow=200, Return=95.42%, Sharpe=0.46
+- WMT: fast=20, slow=100, Return=73.67%, Sharpe=0.49
+- XOM: fast=150, slow=200, Return=85.06%, Sharpe=0.48
+
+Top yearly performers (Sharpe selection):
+
+- HD 2017: Sharpe=2.70, Return=37.47%
+- HON 2017: Sharpe=2.57, Return=30.54%
+- BA 2017: Sharpe=2.55, Return=47.71%
+- BA 2013: Sharpe=2.53, Return=82.48%
+- MCD 2017: Sharpe=2.50, Return=48.15%
+- NEE 2006: Sharpe=2.48, Return=26.31%
+- GS 2016: Sharpe=2.44, Return=46.39%
+- WMT 2024: Sharpe=2.36, Return=61.53%
+- UPS 2013: Sharpe=2.31, Return=33.76%
+- UPS 2004: Sharpe=2.29, Return=21.65%
+
+Top yearly performers (Return selection):
+
+- NVDA 2001: Return=279.98%, Sharpe=0.91
+- AMT 2002: Return=231.49%, Sharpe=0.66
+- AMZN 2009: Return=176.12%, Sharpe=1.29
+- NVDA 2024: Return=167.15%, Sharpe=1.20
+- NVDA 2016: Return=150.96%, Sharpe=1.43
+- NVDA 2023: Return=134.31%, Sharpe=1.21
+- AAPL 2004: Return=131.48%, Sharpe=1.64
+- AMT 2003: Return=127.53%, Sharpe=1.15
+- AXP 2009: Return=118.36%, Sharpe=0.81
+- NVDA 2009: Return=117.59%, Sharpe=1.08
