@@ -1,4 +1,33 @@
+# Project Directory Structure
+data/
+
+# R
 .Rproj.user
 .Rhistory
 .RData
 .Ruserdata
+
+# Python
+__pycache__/
+*.py[cod]
+.python-version
+.ipynb_checkpoints
+
+
+# Operating System Metadata
+._*
+.DocumentRevisions-V100
+.fseventsd
+.Spotlight-V100
+.TemporaryItems
+.Trashes
+.VolumeIcon.icns
+.com.apple.timemachine.donotpresent
+.AppleDB
+.AppleDesktop
+.DS_Store
+.AppleDouble
+.LSOverride
+Network Trash Folder
+Temporary Items
+.apdisk
