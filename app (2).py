@@ -10,7 +10,7 @@ import yfinance as yf
 from datetime import timedelta
 
 # =========================================================
-# 1. Helper Functions 
+# 1. Helper Functions
 # =========================================================
 def SMA(values, n):
     return pd.Series(values).rolling(n).mean()
@@ -60,7 +60,7 @@ def calculate_benchmark_metrics(equity_curve):
     return sharpe, sortino, max_dd, win_rate, var_95
 
 # =========================================================
-# 2. Strategy Classes
+# 2. Strategy Classes 
 # =========================================================
 class SmaCross(Strategy):
     n1 = 10
@@ -173,7 +173,7 @@ STRATEGIES = {
 }
 
 # =========================================================
-# 4. App Layout - Professional Dark Theme
+# 4. App Layout  - Professional Dark Theme
 # =========================================================
 app = dash.Dash(__name__, external_stylesheets=[dbc.themes.SLATE, "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"])
 server = app.server
