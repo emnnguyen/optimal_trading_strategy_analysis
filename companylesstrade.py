@@ -16,7 +16,7 @@ WINDOW = 10
 POSITION_SIZE = 0.2 
 
 
-DATA_DIR = "/Users/vanessaliu/Desktop/STA160/featurecompany/clean_out(data_with_features_cleaned)"
+DATA_DIR = "/Users/vanessaliu/Desktop/STA160/featurecompany"
 
 SECTOR_CONFIGS_EVIDENCE_BASED = {
     'Technology': {
@@ -87,7 +87,7 @@ SECTOR_MAP = {
 }
 
 def load_data():
-    pattern = os.path.join(DATA_DIR, "*_features_deep_clean.csv")
+    pattern = os.path.join(DATA_DIR, "*_features.csv")
     data_files = glob.glob(pattern)
     print(f"Found {len(data_files)} stocks in {DATA_DIR}")
 
@@ -101,7 +101,7 @@ def load_data():
         df = pd.read_csv(file)
         df = df.sort_values("Date").reset_index(drop=True)
         dfs.append(df)
-        name = os.path.basename(file).replace("_features_deep_clean.csv", "")
+        name = os.path.basename(file).replace("_features.csv", "")
         stock_names.append(name)
 
     common_cols = set(dfs[0].columns)
@@ -341,7 +341,8 @@ class ConfigurableStockEnv(gym.Env):
         return self._get_obs(), reward, done, False, info
 
 def train_sector_models(all_train_data, all_test_data, stock_names, common_cols):
-    """为每个行业训练PPO模型"""
+    os.makedirs("models", exist_ok=True)
+
     sector_train_data, _, sector_stock_names = group_data_by_sector(
         all_train_data, all_test_data, stock_names
     )
@@ -371,19 +372,21 @@ def train_sector_models(all_train_data, all_test_data, stock_names, common_cols)
             "MlpPolicy",
             train_env,
             verbose=0,
-            batch_size=256,   
+            batch_size=256,
             n_steps=256,
             learning_rate=3e-4,
             n_epochs=10,
-            ent_coef=0.01,   
+            ent_coef=0.01,
             gamma=0.99,
             device='auto'
         )
         
         model.learn(total_timesteps=80_000)
         
-        save_name = f"ppo_sector_{sector.replace(' ', '_')}"
-        model.save(save_name)
+        
+        save_name = os.path.join("models", f"ppo_sector_{sector.replace(' ', '_')}")
+        model.save(save_name)   
+        print(f"✅ Saved sector model to {save_name}.zip")
         
         models[sector] = {
             "model": model,
@@ -393,6 +396,7 @@ def train_sector_models(all_train_data, all_test_data, stock_names, common_cols)
         train_env.close()
     
     return models
+
 
 
 def evaluate_and_save(models, all_test_data, stock_names, common_cols):

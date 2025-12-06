@@ -1,3 +1,4 @@
+import os
 import pandas as pd
 import numpy as np
 import glob
@@ -14,7 +15,7 @@ COMMISSION = 0.001
 WINDOW = 10
 MIN_REGIME_LENGTH = 90
 
-DATA_DIR = "/Users/vanessaliu/Desktop/STA160/featurecompany/clean_out(data_with_features_cleaned)"
+DATA_DIR = "/Users/vanessaliu/Desktop/STA160/featurecompany"
 
 
 def classify_market_regime(df, lookback=90):
@@ -171,7 +172,7 @@ REGIME_CONFIGS = {
 
 
 def load_data():
-    pattern = DATA_DIR + "/*_features_deep_clean.csv"
+    pattern = DATA_DIR + "/*_features.csv"
     data_files = glob.glob(pattern)
     print(f"📂 Found {len(data_files)} stock files")
 
@@ -182,7 +183,7 @@ def load_data():
         df = pd.read_csv(file)
         df = df.sort_values("Date").reset_index(drop=True)
         
-        name = file.split("/")[-1].replace("_features_deep_clean.csv", "")
+        name = file.split("/")[-1].replace("_features.csv", "")
         stock_names.append(name)
         
         df = add_trading_signals(df)
@@ -442,6 +443,8 @@ class RegimeSpecificEnv(gym.Env):
 
 def train_regime_models(regime_data, common_cols):
     models = {}
+
+    os.makedirs("models", exist_ok=True)
     
     for regime in ['bull', 'bear', 'sideways']:
         train_segments = regime_data[regime]['train']
@@ -483,7 +486,10 @@ def train_regime_models(regime_data, common_cols):
         )
         
         model.learn(total_timesteps=50_000)
-        model.save(f"ppo_regime_{regime}")
+
+        save_path = os.path.join("models", f"ppo_regime_{regime}")
+        model.save(save_path)
+        print(f"✅ Saved model to {save_path}.zip")
         
         models[regime] = {
             "model": model,
