@@ -125,7 +125,7 @@ def split_by_regime(all_data, stock_names, train_ratio=0.7, min_regime_length=MI
 REGIME_CONFIGS = {
     'bull': {
         'name': 'Bull Market Strategy',
-        'description': '牛市策略：持有为主，让利润奔跑',
+        'description': 'Bull market strategy: predominantly holding positions and letting profits run.',
         'min_hold_days': 5,
         'optimal_hold_days': 90,
         'position_size': 0.90,
@@ -138,11 +138,11 @@ REGIME_CONFIGS = {
         'equity_scale': 30,
         'overtrade_penalty': 0.2,
         'min_invest_ratio': 0.5,
-        'expected_trades': '3-5次/年',
+        'expected_trades': '3–5 times per year',
     },
     'bear': {
         'name': 'Bear Market Strategy',
-        'description': '熊市策略：保守防御，快速止损',
+        'description': 'Bear market strategy: defensive and conservative, cutting losses quickly.',
         'min_hold_days': 2,
         'optimal_hold_days': 20,
         'position_size': 0.30,
@@ -152,11 +152,11 @@ REGIME_CONFIGS = {
         'profit_reward_scale': 200,
         'future_reward_scale': 30,
         'final_reward_scale': 5,
-        'expected_trades': '5-15次/年',
+        'expected_trades': '5–15 times per year',
     },
     'sideways': {
         'name': 'Sideways Market Strategy',
-        'description': '震荡市策略：高抛低吸，频繁交易',
+        'description': 'Sideways market strategy: buy low, sell high, frequent trading.',
         'min_hold_days': 3,
         'optimal_hold_days': 40,
         'position_size': 0.60,
@@ -166,10 +166,9 @@ REGIME_CONFIGS = {
         'profit_reward_scale': 120,
         'future_reward_scale': 60,
         'final_reward_scale': 10,
-        'expected_trades': '15-30次/年',
+        'expected_trades': '15–30 times per year',
     }
 }
-
 
 def load_data():
     pattern = DATA_DIR + "/*_features.csv"
