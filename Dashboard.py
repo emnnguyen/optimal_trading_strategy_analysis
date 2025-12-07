@@ -296,7 +296,7 @@ class PPOStrategy(Strategy):
         else:
             self.feature_cols = available
 
-        # Variables used in Regime/Sector environments
+        # Variables used in Regime / Sector environments
         self.days_since_trade = 0     # For ML1 idle logic
         self.hold_days = 0            # For ML2/ML3 hold_days logic
         self.last_action = 0          # For ML2/ML3 last_action logic
@@ -702,7 +702,7 @@ layout_intro = html.Div([
                     html.H1("Can AI Outsmart Wall Street?", className="display-4 fw-bold text-white mb-4"),
                     html.P([
                         "Retail trading has exploded in popularity, with millions of individual investors now competing against institutional and corporate algorithms. ",
-                        "Many are drawn to AI powered trading bots that promise easy returns, but overfitting causes these tools to fail in the real world. ",
+                        "Many are drawn to AI powered trading bots that promise easy returns, but overfitting causes these tools to fail in the real world.",
                     ], className="lead text-light"),
                     html.P([
                         "Our project addresses a critical question for modern investors: ",
@@ -729,7 +729,7 @@ layout_intro = html.Div([
                 html.P([
                     "Our STA 160 Capstone Project explores this question by analyzing twenty-five years of daily stock data from fifty-one major stocks across ",
                     "8 different economic sectors (including the S&P 500 index as a benchmark). Our goal is to compare traditional trading strategies with ",
-                    "several machine learning and deep learning models to determine which approach performs the best in market conditions. ",
+                    "advanced Reinforcement Learning models to determine which approach performs the best in market conditions. ",
                     "This is important in helping investors make more informed decisions."
                 ], className="text-light"),
             ], width=12, className="mb-5")
@@ -760,7 +760,7 @@ layout_intro = html.Div([
                     dbc.CardBody([
                         html.Div(html.I(className="fas fa-brain feature-icon")),
                         html.H4("AI & Machine Learning", className="card-title text-white"),
-                        html.P("We created advanced models including Transformers (Deep Learning) and PPO (Reinforcement Learning). As a benchmark, we used Walk-Forward Validation: training on past data and trading on 'future' unseen data.", className="card-text text-muted")
+                        html.P("For machine learning strategies, we utilized Proximal Policy Optimization (PPO), a Reinforcement Learning algorithm. Instead of static predictions, PPO agents learned active trading behaviors through trial and error, validated via Walk-Forward methods.", className="card-text text-muted")
                     ])
                 ], className="h-100 bg-dark border-secondary")
             ], width=12, md=4, className="mb-4"),
@@ -769,10 +769,10 @@ layout_intro = html.Div([
         # Findings
         dbc.Row([
             dbc.Col([
-                html.H3("Key Findings", className="text-warning border-bottom border-secondary pb-2 mb-4 mt-4"),
+                html.H3("Key Findings: A Nuanced Reality", className="text-warning border-bottom border-secondary pb-2 mb-4 mt-4"),
                 html.Ul([
                     html.Li("Simple strategies like Momentum were surprisingly hard to beat during Bull Markets (like 2010-2019), since they captured the big moves without overthinking.", className="text-light mb-3"),
-                    html.Li("Our initial neural networks were too conservative. We pivoted to Reinforcement Learning (PPO) to teach active trading behaviors.", className="text-light mb-3"),
+                    html.Li("Our initial neural networks were too conservative and refused to trade, so we had to pivot to Reinforcement Learning (PPO) to teach active trading behaviors.", className="text-light mb-3"),
                     html.Li([
                         "Our best results came from ",
                         html.Span("Sector-Specific PPO agents", className="text-success fw-bold"),
@@ -1217,3 +1217,4 @@ def run_opt(n, ticker, strategy, start, end):
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=8050)
+
