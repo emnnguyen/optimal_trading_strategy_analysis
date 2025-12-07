@@ -28,3 +28,7 @@ __pycache__/
 Network Trash Folder
 Temporary Items
 .apdisk
+.venv/
+__pycache__/
+*.pyc
+.DS_Store
