@@ -150,3 +150,4 @@ xyzservices==2025.10.0
 yarl==1.22.0
 yfinance==0.2.66
 zipp==3.23.0
+torch>=1.9
