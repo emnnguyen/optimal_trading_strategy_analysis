@@ -123,15 +123,21 @@ class FastStockEnv(gym.Env):
         )
 
         self.action_space = spaces.Discrete(5)
-        self.rng = np.random.default_rng()
+
+        # ✅ 用老式 RandomState，完全兼容 NumPy 1.x
+        self.rng = np.random.RandomState()
+
         self.reset(seed=None)
 
     def reset(self, seed=None, options=None):
         super().reset(seed=seed)
-        if seed is not None:
-            self.rng = np.random.default_rng(seed)
 
-        self.current_stock_idx = self.rng.integers(0, len(self.df_list))
+        # 如果给了 seed，就设置 RandomState 的种子
+        if seed is not None:
+            self.rng.seed(seed)
+
+        # ✅ 用 randint 替代 integers
+        self.current_stock_idx = self.rng.randint(0, len(self.df_list))
         self.df = self.df_list[self.current_stock_idx].reset_index(drop=True)
 
         self.features = self.df[self.feature_cols].values
@@ -233,7 +239,6 @@ class FastStockEnv(gym.Env):
         return obs, reward, terminated, truncated, info
 
 
-
 def train_rl_model(all_train_data, common_cols):
     print("=" * 80)
     print("TRAINING RL MODEL")
@@ -258,7 +263,6 @@ def train_rl_model(all_train_data, common_cols):
 
     model.learn(total_timesteps=100_000)
 
-   
     os.makedirs("models", exist_ok=True)
     model_path = "models/ppo_fast_multi_stock"
     model.save(model_path)   
@@ -266,7 +270,6 @@ def train_rl_model(all_train_data, common_cols):
 
     train_env.close()
     return model
-
 
 
 def test_rl_model(model, test_df, common_cols, stock_name):

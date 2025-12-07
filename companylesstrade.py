@@ -15,7 +15,6 @@ COMMISSION = 0.001
 WINDOW = 10
 POSITION_SIZE = 0.2 
 
-
 DATA_DIR = "/Users/vanessaliu/Desktop/STA160/featurecompany"
 
 SECTOR_CONFIGS_EVIDENCE_BASED = {
@@ -143,7 +142,6 @@ def load_data():
 def add_trading_signals(df):
     df = df.copy()
     
-
     df['return_1d'] = df['Close'].pct_change(1)
     df['return_5d'] = df['Close'].pct_change(5)
     df['return_10d'] = df['Close'].pct_change(10)
@@ -187,7 +185,8 @@ def group_data_by_sector(all_train_data, all_test_data, stock_names):
 
     for train_df, test_df, name in zip(all_train_data, all_test_data, stock_names):
         sector = SECTOR_MAP.get(name)
-        if sector is None: continue
+        if sector is None:
+            continue
         
         sector_train_data[sector].append(train_df)
         sector_test_data[sector].append(test_df)
@@ -195,8 +194,8 @@ def group_data_by_sector(all_train_data, all_test_data, stock_names):
     
     return sector_train_data, sector_test_data, sector_stock_names
 
+
 class ConfigurableStockEnv(gym.Env):
- 
     def __init__(self, df_list, feature_cols, style_config, 
                  cash=CASH, commission=COMMISSION, window=WINDOW):
         super().__init__()
@@ -215,14 +214,20 @@ class ConfigurableStockEnv(gym.Env):
             low=-np.inf, high=np.inf,
             shape=(obs_dim,), dtype=np.float32
         )
-        self.action_space = spaces.Discrete(3) 
+        self.action_space = spaces.Discrete(3)
+
+        # ✅ 使用老式 RandomState，NumPy 1.x / 2.x 都兼容
+        self.rng = np.random.RandomState()
 
     def reset(self, *, seed=None, options=None):
         super().reset(seed=seed)
-        if seed is not None:
-            np.random.seed(seed)
 
-        self.current_stock_idx = np.random.randint(0, len(self.df_list))
+        # 如有 seed，则设置随机数种子
+        if seed is not None:
+            self.rng.seed(seed)
+
+        # 用 RandomState 来选择当前股票
+        self.current_stock_idx = self.rng.randint(0, len(self.df_list))
         self.df = self.df_list[self.current_stock_idx].reset_index(drop=True)
 
         self.features = self.df[self.feature_cols].values
@@ -251,9 +256,8 @@ class ConfigurableStockEnv(gym.Env):
 
         price = self.prices[self.step_idx]
         
-
         cash_ratio = self.cash / self.portfolio_value
-        position_val_ratio = (self.position * price) / self.portfolio_value
+        position_val_ratio = (self.position * price) / self.portfolio_value if self.portfolio_value > 0 else 0.0
         
         return np.concatenate([
             hist.flatten(),
@@ -287,17 +291,16 @@ class ConfigurableStockEnv(gym.Env):
             else:
                 reward -= 0.01
 
-        
+        # Action 2: Sell
         elif action == 2:
             if self.position > 0:
                 if self.hold_days < min_hold:
                     reward -= 0.5 
                 
-                
                 revenue = self.position * current_price * (1 - self.commission)
                 self.cash += revenue
                 
-                profit_pct = (current_price - self.last_buy_price) / self.last_buy_price
+                profit_pct = (current_price - self.last_buy_price) / (self.last_buy_price + 1e-8)
                 reward += profit_pct * 5.0 
                 
                 self.position = 0
@@ -311,15 +314,14 @@ class ConfigurableStockEnv(gym.Env):
             if self.position > 0:
                 self.hold_days += 1
         
-                if current_price > self.prices[self.step_idx-1]:
+                if current_price > self.prices[self.step_idx - 1]:
                     reward += 0.05
             else:
-        
                 reward -= 0.005
 
         self.portfolio_value = self.cash + self.position * current_price
         
-        step_return = (self.portfolio_value - prev_portfolio_value) / prev_portfolio_value
+        step_return = (self.portfolio_value - prev_portfolio_value) / (prev_portfolio_value + 1e-8)
         reward += step_return * 100
         
         if trade_occurred:
@@ -339,6 +341,7 @@ class ConfigurableStockEnv(gym.Env):
         }
 
         return self._get_obs(), reward, done, False, info
+
 
 def train_sector_models(all_train_data, all_test_data, stock_names, common_cols):
     os.makedirs("models", exist_ok=True)
@@ -383,7 +386,6 @@ def train_sector_models(all_train_data, all_test_data, stock_names, common_cols)
         
         model.learn(total_timesteps=80_000)
         
-        
         save_name = os.path.join("models", f"ppo_sector_{sector.replace(' ', '_')}")
         model.save(save_name)   
         print(f"✅ Saved sector model to {save_name}.zip")
@@ -396,7 +398,6 @@ def train_sector_models(all_train_data, all_test_data, stock_names, common_cols)
         train_env.close()
     
     return models
-
 
 
 def evaluate_and_save(models, all_test_data, stock_names, common_cols):
@@ -457,7 +458,7 @@ def evaluate_and_save(models, all_test_data, stock_names, common_cols):
         plt.xlabel("Number of Trades")
         plt.ylabel("Return (%)")
         plt.title("RL Strategy: Trades vs Return")
-        plt.axhline(0, color='r', linestyle='--')
+        plt.axhline(0, linestyle='--')
         plt.savefig("trades_vs_return.png")
 
 
